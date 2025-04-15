@@ -35,15 +35,14 @@ contract Raffle {
     // Errors //
     error Raffle__SendMoreToEnterRaffle();
 
-
     uint256 private immutable i_enteranceFee;
-    address payable [] private s_players;
+    address payable[] private s_players;
 
     // Events //
 
     event RaffleEntered(address indexed player);
 
-   // Constructor //
+    // Constructor //
     constructor(uint256 entranceFee) {
         i_enteranceFee = entranceFee;
     }
@@ -51,7 +50,7 @@ contract Raffle {
     function enterRuffle() public payable {
         // require(msg.value >= i_enteranceFee, "Not Enough Amount sent!")
         require(msg.value >= i_enteranceFee, Raffle__SendMoreToEnterRaffle());
-        s_players.push(payable(msg.sender))
+        s_players.push(payable(msg.sender));
         emit RaffleEntered(msg.sender);
     }
 
